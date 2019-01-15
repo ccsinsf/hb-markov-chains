@@ -9,10 +9,16 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
+    # feed file_path(arg) to file.read() 
+    # return str("contents")
+
+    print(open(file_path).read())
+    print(type(open(file_path).read()))
+    return open(file_path).read()
 
     # your code goes here
 
-    return "Contents of your file as one long string"
+    # return "Contents of your file as one long string"
 
 
 def make_chains(text_string):
