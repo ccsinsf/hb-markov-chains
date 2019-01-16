@@ -62,9 +62,8 @@ def make_chains(text_string):
         # print([word_list[i], word_list[i+1]])
         #new attempt: two loops with two different ranges
         #step 1: get keys
-        bigram_list_prep = [word_list[i], word_list[i+1]]
-        word_tuple = tuple(bigram_list_prep)
-        bigram_list.append(word_tuple)
+        bigram_tuple = (word_list[i], word_list[i+1])
+        bigram_list.append(bigram_tuple)
 
     for y in range(len(word_list) - 2):
         value_list.extend([word_list[y+2]])
@@ -85,16 +84,23 @@ def make_chains(text_string):
     #     else:
     #         chains[bigram_list[z]] = list(value_list[z]) 
     #     # z += 1
+    # print(bigram_list)
+    # print(value_list)
 
-    z = 0
-
-    for word in bigram_list:
-        # chains[word] = chains.get(word) + extend(value_list[z])
-        if chains[word] in chains:
-            chains[word] = list(value_list[z])
+    for word in range(len(bigram_list) -1):
+    # for word in bigram_list:
+        # print(word)
+        # print(chains)
+        # chains[word] = chains.get(word, 0) + 1
+        if not bigram_list[word] in chains:
+            # chains.update({word: list([value_list[z - 1]])})
+            chains[bigram_list[word]] = list([value_list[word]])
         else:
-            chains[word] = list(value_list[z])
-        z += 1
+            chains[bigram_list[word]].extend([value_list[word]])
+            # if chains[word] in chains:
+            #     chains[word] = list(value_list[z])
+            # else:
+            #     chains[word] = list(value_list[z])
 
     # for word in bigram_list:
     #     chains[word] = chains.get(word, 0) + word
